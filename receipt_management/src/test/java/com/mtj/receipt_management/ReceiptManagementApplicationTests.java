@@ -1,13 +1,34 @@
 package com.mtj.receipt_management;
 
+import com.mtj.receipt_management.entities.Receipts;
+import com.mtj.receipt_management.models.ReceiptDTO;
+import com.mtj.receipt_management.services.ReceiptsService;
+import com.mtj.receipt_management.utils.enums.InputType;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import reactor.core.publisher.Mono;
 
 @SpringBootTest
+@Slf4j
 class ReceiptManagementApplicationTests {
 
+    @Autowired
+    private ReceiptsService  receiptsService;
     @Test
     void contextLoads() {
+
+        ReceiptDTO receiptDTO = ReceiptDTO.builder()
+                .currentAmount(2500.0)
+                .description("Vente de A")
+                .inputType(InputType.ENTRY)
+                .build();
+        Mono<ReceiptDTO> receiptMono = receiptsService.saveReceipts(receiptDTO);
+
+        receiptMono.subscribe(receipt -> log.info("Receipt data : {}", receipt));
+        receiptMono.subscribe(System.out::println);
+
     }
 
 }

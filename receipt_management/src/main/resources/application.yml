@@ -1,0 +1,25 @@
+spring:
+  profiles:
+    active: development
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/db_recette
+    username: postgres
+    password: admin
+    name: db_receipt
+    pool:
+      enabled: true
+
+
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    org.springframework.r2dbc: debug
+
+server:
+  port: 9090
