@@ -7,12 +7,13 @@ spring:
         enabled: true
 
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/db_recette
+    url: r2dbc:postgresql://localhost:5432/db_receipt
     username: postgres
     password: admin
     name: db_receipt
     pool:
       enabled: true
+      max-size: 20
 
 
 logging:
@@ -23,3 +24,8 @@ logging:
 
 server:
   port: 9090
+#server.port=9090
+#spring.r2dbc.name=db_receipt
+#spring.r2dbc.url=r2dbc:postgresql://localhost:5432/db_receipt
+#spring.r2dbc.username=postgres
+#spring.r2dbc.password=admin
