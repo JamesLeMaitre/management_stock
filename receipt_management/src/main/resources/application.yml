@@ -7,13 +7,16 @@ spring:
         enabled: true
 
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/db_receipt
+    url: r2dbc:postgresql://localhost:5432/postgres
     username: postgres
     password: admin
-    name: db_receipt
+    name: postgres
     pool:
       enabled: true
       max-size: 20
+  jpa:
+    show-sql: true
+
 
 
 logging:

@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
@@ -18,19 +19,24 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Builder
-@Table
+@Table(name = "receipts")
 public class Receipts implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private double currentAmount;
 
+    @Column
     private String description;
+    @Column
     private InputType inputType;
 
     @CreationTimestamp
+    @Column
     private Date dateCreate;
     @UpdateTimestamp
+    @Column
     private Date dateUpdate;
 
 
